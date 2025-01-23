@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Post</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        #f{
+            display: flex;
+            align-items: center;
+            /* justify-content: space-between; */
+            flex-direction: column;
+            /* background-color: antiquewhite; */
+
+        }
+        .in{
+            width: 500px;
+            padding: 15px 50px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+        button{
+            padding: 10px 20px;
+            background-color: violet;
+            border: none;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+        a{
+            font-size: 20px;
+            text-decoration: none;
+            margin-top: 10px;
+
+        }
+        a:hover{
+            color: blue;
+        }
+        .in::placeholder{
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+
+        <form method="post" action="/posts">
+            <div id="f">
+                <h1>Create New Post</h1>
+            <input type="text" placeholder="Enter the username" name="username" class="in">
+            <!-- <input type="textarea" placeholder="Enter the content" name="content" class="in"> -->
+            <textarea name="content" class="in" id="" cols="30" rows="10" placeholder="Enter the Content"></textarea>
+            <button>Submit</button>
+            <a href="http://localhost:3000/posts">Back</a>
+           </div>
+    </form>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QUORA Post</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Quora POST</h1>
+    <a id="aa" href="http://localhost:3000/posts/new">Create new Post</a>
+
+   <% for(post of data){ %>
+        <div id="pos">
+            <h3>@<%= post.username %></h3>
+            <p><%= post.content %></p>
+            <div id="pos-a">
+
+                <a class="op" href="http://localhost:3000/posts/<%= post.id  %>">See Details</a>
+                <a class="op"  href="http://localhost:3000/posts/<%= post.id  %>/edit">EDIT</a>
+                <form  method="post" action="/posts/<%= post.id  %>?_method=DELETE">
+                    <button class="op a"> DELETE</button>
+                </form>
+            </div>
+
+        </div>
+
+    <% } %>
+    
+    <br>
+    <br>
+
+    <br>
+
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Posts</h1>
+<a href="/posts/new">Create New Post</a>
+<ul>
+  <% data.forEach(post => { %>
+    <li>
+      <strong><%= post.username %>:</strong> <%= post.content %>
+      <a href="/posts/<%= post.id %>">View</a>
+    </li>
+  <% }) %>
+</ul>
+
+</body>
+</html>

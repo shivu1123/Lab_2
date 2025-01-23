@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Board</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .post-card {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .post-card .card-body {
+            padding: 20px;
+        }
+        .post-card .card-title {
+            margin-bottom: 15px;
+        }
+        .post-card .card-text {
+            margin-bottom: 15px;
+        }
+        .post-card .like-button {
+            display: flex;
+            align-items: center;
+        }
+        .post-card .like-button i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <a class="navbar-brand" href="#">Discussion Board</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/my-posts">My Posts</a>
+                </li>
+                <li class="nav-item">
+                    <form action="/logout" method="get">
+                        <button type="submit" class="btn btn-danger nav-link">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Welcome to the Discussion Forum <%= user.username %></h1>
+
+        <div id="discussion-list" class="mt-4">
+            <!-- Button to trigger modal -->
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#postDiscussionModal">
+                Post Discussion
+            </button>
+            
+            <h2>Discussions</h2>
+            <div class="row">
+                <!-- Loop through each post and display its title, description, and username -->
+                <% posts.forEach(post => { %>
+                    <div class="col-md-6">
+                        <div class="card post-card">
+                            <div class="card-body">
+                                <div class="div d-flex justify-content-between">
+                                    <h5 class="card-title"><span>User:</span> <%= post.userId.username %></h5> <!-- Display the username -->
+                                    <i class="ri-more-2-fill " style="font-size: 19px;"></i>
+                                </div>
+                                <hr>
+                                
+                                <h5 class="card-title"><%= post.title %></h5>
+                                <p class="card-text"><%= post.description %></p>
+                                <button class="btn btn-light like-button" data-likes="0">Like (<span class="like-count">0</span>)</button>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </div>
+
+        <!-- Modal for posting a discussion -->
+        <div class="modal fade" id="postDiscussionModal" tabindex="-1" role="dialog" aria-labelledby="postDiscussionModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="postDiscussionModalLabel">Post a Discussion</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" action="/posts">
+                            <div class="form-group">
+                                <label for="discussion-title">Title</label>
+                                <input type="text" name="title" class="form-control" id="discussion-title" placeholder="Enter discussion title">
+                            </div>
+                            <div class="form-group">
+                                <label for="discussion-details">Details</label>
+                                <textarea class="form-control" name="description" id="discussion-details" rows="3" placeholder="Enter discussion details"></textarea>
+                            </div>
+                            <input type="text" name="userId" value="<%= user._id %>" hidden>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Post Discussion</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Include FontAwesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <script>
+        // Handle like button click
+        document.querySelectorAll('.like-button').forEach(button => {
+            button.addEventListener('click', function() {
+                let likeCountElement = this.querySelector('.like-count');
+                let currentLikes = parseInt(likeCountElement.textContent);
+                currentLikes += 1; // Increment the like count
+                likeCountElement.textContent = currentLikes; // Update the displayed count
+            });
+        });
+    </script>
+</body>
+</html>
+
