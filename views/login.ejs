@@ -4,39 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <!-- Bootstrap CSS include kiya he -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/login.css"> <!-- Your custom CSS if needed -->
+    <link rel="stylesheet" href="/css/login.css"> <!-- Custom CSS ka link diya he -->
 </head>
 <body>
+    <!-- Full height container banaya he -->
     <div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
         <div class="row w-100">
+            <!-- Login form ke liye column banaya he -->
             <div class="col-md-6 bg-light p-5 rounded shadow">
                 <h1 class="text-center">Login</h1>
                 <form action="/log" method="post">
                     <div class="form-group">
+                        <!-- Email field banaya he -->
                         <label for="email">Email</label>
                         <input type="email" name="email" class="form-control" id="email" placeholder="Enter Your Email" required>
                     </div>
                     <div class="form-group">
+                        <!-- Password field banaya he -->
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control" id="password" placeholder="Enter Your Password" required>
                     </div>
+                    <!-- Login button banaya he -->
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                     <div class="text-center mt-3">
+                        <!-- Forgot password ka link diya he -->
                         <a href="#" class="text-muted">Forgot password?</a>
                     </div>
                     <div class="text-center mt-2">
+                        <!-- Sign up ka link diya he -->
                         <a href="/" class="text-muted">Don't have an account? Sign up</a>
                     </div>
                 </form>
             </div>
+            <!-- Right side image ke liye column banaya he -->
             <div class="col-md-6 d-none d-md-flex justify-content-center align-items-center">
                 <img src="/img/64665.jpg" alt="Login Image" class="img-fluid rounded">
             </div>
         </div>
     </div>
 
-    <!-- Include Bootstrap JS and dependencies -->
+    <!-- Bootstrap JS aur dependencies include kiye he -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

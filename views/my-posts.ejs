@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Posts</title>
-    <!-- Include Bootstrap CSS -->
+    <!-- Bootstrap CSS include kiya he -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        /* Post card ka styling kiya he */
         .post-card {
             margin-bottom: 20px;
             border: 1px solid #ddd;
@@ -32,7 +33,7 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Navbar banaya he -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <a class="navbar-brand" href="#">Discussion Board</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +45,7 @@
                     <a class="nav-link" href="/my-posts">My Posts</a>
                 </li>
                 <li class="nav-item">
+                    <!-- Logout button banaya he -->
                     <form action="/logout" method="get">
                         <button type="submit" class="btn btn-danger nav-link">Logout</button>
                     </form>
@@ -54,11 +56,12 @@
 
     <div class="container mt-5">
         <h1>My Posts</h1>
+        <!-- Back to home ka button diya he -->
         <a href="/home" class="btn btn-secondary mt-3">Back to Home</a>
         
         <div id="my-posts-list" class="mt-5">
             <div class="row">
-                <!-- Loop through each post and display its title and description -->
+                <!-- Har post ko loop me display kiya he -->
                 <% posts.forEach(post => { %>
                     <div class="col-md-6">
                         <div class="card post-card">
@@ -67,10 +70,12 @@
                                 <p class="card-text"><strong>Description:</strong> <%= post.description %></p>
                                 <small>Posted by: <%= post.userId.username %></small>
                                 <div class="mt-3">
+                                    <!-- Edit button banaya he -->
                                     <button class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editPostModal" 
                                             data-title="<%= post.title %>" 
                                             data-description="<%= post.description %>" 
                                             data-id="<%= post._id %>">Edit</button>
+                                    <!-- Delete button banaya he -->
                                     <form action="/delete-post/<%= post._id %>" method="post" style="display:inline;">
                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
@@ -83,7 +88,7 @@
         </div>
     </div>
 
-    <!-- Modal for editing a post -->
+    <!-- Edit post ka modal banaya he -->
     <div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="editPostModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -114,29 +119,29 @@
         </div>
     </div>
 
-    <!-- Include Bootstrap JS and dependencies -->
+    <!-- Bootstrap JS aur dependencies include kiye he -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Include FontAwesome for icons -->
+    <!-- FontAwesome icons ke liye script include kiya he -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-        // Populate the modal with post data when the edit button is clicked
+        // Edit button click hone pe modal me post data show karne ka function likha he
         $('#editPostModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
-            var title = button.data('title'); // Extract info from data-* attributes
+            var title = button.data('title'); // Data attributes se info le raha he
             var description = button.data('description');
             var postId = button.data('id');
 
-            // Update the modal's content
+            // Modal ke fields update kar raha he
             var modal = $(this);
             modal.find('#edit-title').val(title);
             modal.find('#edit-description').val(description);
             modal.find('#edit-post-id').val(postId);
 
-            modal.find('#editPostForm').attr('action', '/update-post/' + postId); // Set the form action
+            modal.find('#editPostForm').attr('action', '/update-post/' + postId); // Form action update kar raha he
         });
     </script>
 </body>
-</html> 
+</html>

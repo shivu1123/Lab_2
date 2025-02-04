@@ -8,9 +8,10 @@
     href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
     rel="stylesheet"
 />
-    <!-- Include Bootstrap CSS -->
+    <!-- Bootstrap CSS include kiya he -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        /* Post card ka style set kiya he */
         .post-card {
             margin-bottom: 20px;
             border: 1px solid #ddd;
@@ -26,6 +27,7 @@
         .post-card .card-text {
             margin-bottom: 15px;
         }
+        /* Like button ka design set kiya he */
         .post-card .like-button {
             display: flex;
             align-items: center;
@@ -36,7 +38,7 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Navbar banaya he -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
         <a class="navbar-brand" href="#">Discussion Board</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,6 +50,7 @@
                     <a class="nav-link" href="/my-posts">My Posts</a>
                 </li>
                 <li class="nav-item">
+                    <!-- Logout button ka form banaya he -->
                     <form action="/logout" method="get">
                         <button type="submit" class="btn btn-danger nav-link">Logout</button>
                     </form>
@@ -57,27 +60,30 @@
     </nav>
 
     <div class="container mt-5">
+        <!-- User ka naam display kiya he -->
         <h1>Welcome to the Discussion Forum <%= user.username %></h1>
 
         <div id="discussion-list" class="mt-4">
-            <!-- Button to trigger modal -->
+            <!-- Modal open karne ke liye button banaya he -->
             <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#postDiscussionModal">
                 Post Discussion
             </button>
             
             <h2>Discussions</h2>
             <div class="row">
-                <!-- Loop through each post and display its title, description, and username -->
+                <!-- Sare posts ko loop se display kiya he -->
                 <% posts.forEach(post => { %>
                     <div class="col-md-6">
                         <div class="card post-card">
                             <div class="card-body">
                                 <div class="div d-flex justify-content-between">
-                                    <h5 class="card-title"><span>User:</span> <%= post.userId.username %></h5> <!-- Display the username -->
+                                    <!-- Post ka user name dikhaya he -->
+                                    <h5 class="card-title"><span>User:</span> <%= post.userId.username %></h5> 
                                     <i class="ri-more-2-fill " style="font-size: 19px;"></i>
                                 </div>
                                 <hr>
                                 
+                                <!-- Post ka title aur description show kiya he -->
                                 <h5 class="card-title"><%= post.title %></h5>
                                 <p class="card-text"><%= post.description %></p>
                                 <button class="btn btn-light like-button" data-likes="0">Like (<span class="like-count">0</span>)</button>
@@ -88,7 +94,7 @@
             </div>
         </div>
 
-        <!-- Modal for posting a discussion -->
+        <!-- Post discussion ke liye modal banaya he -->
         <div class="modal fade" id="postDiscussionModal" tabindex="-1" role="dialog" aria-labelledby="postDiscussionModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -102,12 +108,15 @@
                         <form method="post" action="/posts">
                             <div class="form-group">
                                 <label for="discussion-title">Title</label>
+                                <!-- Discussion title ka input field banaya he -->
                                 <input type="text" name="title" class="form-control" id="discussion-title" placeholder="Enter discussion title">
                             </div>
                             <div class="form-group">
                                 <label for="discussion-details">Details</label>
+                                <!-- Discussion details ka textarea banaya he -->
                                 <textarea class="form-control" name="description" id="discussion-details" rows="3" placeholder="Enter discussion details"></textarea>
                             </div>
+                            <!-- Hidden userId ka input diya he -->
                             <input type="text" name="userId" value="<%= user._id %>" hidden>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -120,24 +129,23 @@
         </div>
     </div>
 
-    <!-- Include Bootstrap JS and dependencies -->
+    <!-- Bootstrap JS aur dependencies include kiye he -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Include FontAwesome for icons -->
+    <!-- FontAwesome icons ke liye script include kiya he -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
     <script>
-        // Handle like button click
+        // Like button click handle kiya he
         document.querySelectorAll('.like-button').forEach(button => {
             button.addEventListener('click', function() {
                 let likeCountElement = this.querySelector('.like-count');
                 let currentLikes = parseInt(likeCountElement.textContent);
-                currentLikes += 1; // Increment the like count
-                likeCountElement.textContent = currentLikes; // Update the displayed count
+                currentLikes += 1; // Like count increment kiya he
+                likeCountElement.textContent = currentLikes; // Updated count dikhaya he
             });
         });
     </script>
 </body>
 </html>
-
